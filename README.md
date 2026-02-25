@@ -1,12 +1,9 @@
-> **Note:** Please follow the [repository conventions](https://github.com/EsriDevEvents/contributor-guides/blob/main/conventions.md#conventions-for-repositories) and [slugify](https://slugify.online/) the title of your repo
-
-# Name of the session
-
-[Description of the session]
+# Web Development Basics: HTML, CSS, and JS 
+Repository for Web Development Basics technical session, 2026 Esri Developer & Technology Summit. [See session info](https://registration.esri.com/flow/esri/26epcdev/deveventportal/page/detailed-agenda/session/1761124540960001hJXA)/
 
 ## Slides and recording
 
-Most of the slides are made available at [Esri Events > Proceedings](https://www.esri.com/en-us/about/events/index/proceedings).
+Slides will be available at [Esri Events > Proceedings](https://www.esri.com/en-us/about/events/index/proceedings).
 
 ## Related sessions
 
