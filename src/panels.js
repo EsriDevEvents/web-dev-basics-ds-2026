@@ -14,7 +14,9 @@ const navigationEl = document.getElementById("nav");
 const sheetEl = document.getElementById("sheet");
 const panelEl = document.getElementById("sheet-panel");
 
-navigationEl.addEventListener("calciteNavigationActionSelect", () => handleSheetOpen());
+navigationEl.addEventListener("calciteNavigationActionSelect", () =>
+  handleSheetOpen(),
+);
 
 panelEl.addEventListener("calcitePanelClose", () => handlePanelClose());
 

@@ -1,4 +1,4 @@
-# Resources 
+# Resources
 
 A collection of doc, links, and resources to learn more about topics covered in these demos and front-end web development in general
 
@@ -21,18 +21,20 @@ A collection of doc, links, and resources to learn more about topics covered in 
 - [JavaScript 30](https://javascript30.com/)
 
 ## Asynchronous JavaScript
+
 - [MDN's intro to asynchronous JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
 - [How to use JavaScript Promises](https://www.freecodecamp.org/news/javascript-promises-async-await-and-promise-methods/)
 - [JavaScript Enlightenment: Promises](https://frontendmasters.com/guides/javascript-enlightenment/#7)
 - [Events](https://developer.mozilla.org/en-US/docs/Web/API/Event)
 
-
 ## Web Components
+
 - [You guessed it, here's the MDN docs](https://developer.mozilla.org/en-US/docs/Web/API/Web_components)
 
 ## CSS
 
 ## CSA demo application
+
 - [Portland Open Data portal](https://gis-pdx.opendata.arcgis.com/)
 - [Vite](https://vitejs.dev/)
 - [ArcGIS Maps SDK for JavaScript map component](https://developers.arcgis.com/javascript/latest/references/map-components/arcgis-map/)
@@ -47,10 +49,12 @@ A collection of doc, links, and resources to learn more about topics covered in 
 - [featureEffect](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-support-FeatureEffect.html)
 
 ## Browser dev tools
+
 - [Chrome Developer Tools](https://developers.google.com/web/tools/chrome-devtools/javascript/)
 - [Firefox Developer Tools](https://developer.mozilla.org/en-US/docs/Tools)
 
 ## Additional tools and resources
+
 - Set up your local dev environment: [Do I have a web server running?](https://gist.github.com/jgravois/5e73b56fa7756fd00b89)
 - Prototype with [CodePen](https://codepen.io) or [StackBlitz](https://stackblitz.com/)
 - [Visual Studio Code](https://code.visualstudio.com/)

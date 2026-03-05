@@ -27,7 +27,12 @@ import * as farmBuildingCIMSymbol from "./farm-building-cim-symbol.json";
 /**
  * Shared functions from list-view
  */
-import { normalizeFeatureData, displayCard, categorizeProducts, getChips } from "./list-view/list-view";
+import {
+  normalizeFeatureData,
+  displayCard,
+  categorizeProducts,
+  getChips,
+} from "./list-view/list-view";
 
 // Load calcite components
 defineCustomElements(window, {
@@ -47,14 +52,16 @@ const csaRenderer = {
 };
 
 function customizePopupContent(feature) {
-  const products = categorizeProducts(feature.graphic.attributes["Main_Products"]);
+  const products = categorizeProducts(
+    feature.graphic.attributes["Main_Products"],
+  );
   const chips = getChips(products);
   return `<p><b>Pickup address:</b> {Location}</p><ul class="popup-chips">${chips}</ul><a href={Website}>View website</a>`;
 }
 // Configure popup template content
 const csaPopup = {
   title: "{Farm_Name}",
-  content: customizePopupContent
+  content: customizePopupContent,
 };
 
 // Configure the CSA pickups feature layer
@@ -130,7 +137,7 @@ mapElement.addEventListener("arcgisViewReadyChange", async (event) => {
       "Main_Products",
       "Website",
       "email",
-    ]
+    ],
   });
 
   const features = normalizeFeatureData(featureSet);
@@ -141,7 +148,7 @@ mapElement.addEventListener("arcgisViewReadyChange", async (event) => {
 
   // show the default graphic after the map loads (before we set up the hit test)
   feature.graphic = defaultGraphic;
-  
+
   // Wait for the layer view to be ready before setting up the hitTest below
   const csaPickupsLayerView = await mapElement.whenLayerView(csaPickupsLayer);
 
@@ -153,7 +160,9 @@ mapElement.addEventListener("arcgisViewReadyChange", async (event) => {
       include: csaPickupsLayer,
     });
 
-    const results = hitTest.results.filter((result) => result.graphic.layer.popupTemplate);
+    const results = hitTest.results.filter(
+      (result) => result.graphic.layer.popupTemplate,
+    );
 
     const result = results[0];
     const newId = result?.graphic.attributes[csaPickupsLayer.objectIdField];
@@ -183,7 +192,7 @@ mapElement.addEventListener("arcgisViewReadyChange", async (event) => {
 
     // Set filter values from the selected chips
     const productFilter = event.target.selectedItems.map(
-      (selected) => selected.value
+      (selected) => selected.value,
     );
 
     const featureFilter = {
@@ -202,7 +211,7 @@ mapElement.addEventListener("arcgisViewReadyChange", async (event) => {
     features.forEach((feature) => {
       const isMatch =
         feature.products.filter((product) =>
-          productFilter.includes(product.replace(" ", "_"))
+          productFilter.includes(product.replace(" ", "_")),
         ).length === productFilter.length;
       if (isMatch) {
         displayCard(feature);

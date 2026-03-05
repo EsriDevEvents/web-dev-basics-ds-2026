@@ -41,7 +41,11 @@ const container = document.querySelector(".card-container");
 const featureServiceUrl =
   "https://www.portlandmaps.com/od/rest/services/COP_OpenData_ImportantPlaces/MapServer/188";
 
-queryFeatures({ url: featureServiceUrl, where: "Status = 'Active'", returnGeometry: false })
+queryFeatures({
+  url: featureServiceUrl,
+  where: "Status = 'Active'",
+  returnGeometry: false,
+})
   .then((layer) => normalizeFeatureData(layer))
   .then((data) => displayAllCards(data))
   .then((data) => filterResults(data))
@@ -66,21 +70,26 @@ export function normalizeFeatureData(layer) {
 export function categorizeProducts(productString) {
   const categories = Object.keys(CATEGORY_MAP);
   // Trim any leading or trailing white space and lowercase strings before splitting into an array
-  const remapped = productString.trim().toLowerCase().split(", ").map(product => {
-    if (categories.includes(product)) {
-      return product;
-    }
-    // Iterate through categories and their products to find the correct category
-    for (const category in CATEGORY_MAP) {
-      if (CATEGORY_MAP[category].products.includes(product)) {
-        return category; 
+  const remapped = productString
+    .trim()
+    .toLowerCase()
+    .split(", ")
+    .map((product) => {
+      if (categories.includes(product)) {
+        return product;
       }
-    } 
-  });
+      // Iterate through categories and their products to find the correct category
+      for (const category in CATEGORY_MAP) {
+        if (CATEGORY_MAP[category].products.includes(product)) {
+          return category;
+        }
+      }
+    });
   // Return the grouped products but first filter out any undefined or duplicate values
-  return remapped.filter((category, index) => category && remapped.indexOf(category) === index);
+  return remapped.filter(
+    (category, index) => category && remapped.indexOf(category) === index,
+  );
 }
-
 
 // Attaches calcite-chip-group custom event
 function filterResults(sites) {
@@ -92,7 +101,7 @@ function filterResults(sites) {
     sites.forEach((site) => {
       const isMatch =
         site.products.filter((product) =>
-          filters.includes(product.replace(" ", "_"))
+          filters.includes(product.replace(" ", "_")),
         ).length === filters.length;
       if (isMatch) {
         displayCard(site);

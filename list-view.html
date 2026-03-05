@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -9,15 +9,30 @@
 
   <body>
     <calcite-shell>
-  <calcite-navigation navigation-action slot="header" id="nav">
-      <calcite-navigation-logo href="#" icon="partner" alt="Application logo" slot="logo" heading="Portland CSA Pickup Sites"
-        description="Esri Developer & Technology Summit 2026">
-      </calcite-navigation-logo>
-      <calcite-menu slot="content-end">
-        <calcite-menu-item icon-start="map" text="Map" href="/"></calcite-menu-item>
-        <calcite-menu-item active icon-start="list" text="Site list" href="/list-view"></calcite-menu-item>
-      </calcite-menu>
-    </calcite-navigation>
+      <calcite-navigation navigation-action slot="header" id="nav">
+        <calcite-navigation-logo
+          href="#"
+          icon="partner"
+          alt="Application logo"
+          slot="logo"
+          heading="Portland CSA Pickup Sites"
+          description="Esri Developer & Technology Summit 2026"
+        >
+        </calcite-navigation-logo>
+        <calcite-menu slot="content-end">
+          <calcite-menu-item
+            icon-start="map"
+            text="Map"
+            href="/"
+          ></calcite-menu-item>
+          <calcite-menu-item
+            active
+            icon-start="list"
+            text="Site list"
+            href="/list-view"
+          ></calcite-menu-item>
+        </calcite-menu>
+      </calcite-navigation>
 
       <calcite-panel>
         <div class="grid-container">
@@ -26,11 +41,25 @@
           </calcite-panel>
 
           <calcite-panel class="panel-start" heading="Find a site">
-            <calcite-action id="toggle-instructions" text="Instructions" icon="information"
-              slot="header-actions-end"></calcite-action>
-            <calcite-tooltip placement="bottom" reference-element="toggle-instructions" slot="header-actions-end">Filter by product to find sites.</calcite-tooltip>
+            <calcite-action
+              id="toggle-instructions"
+              text="Instructions"
+              icon="information"
+              slot="header-actions-end"
+            ></calcite-action>
+            <calcite-tooltip
+              placement="bottom"
+              reference-element="toggle-instructions"
+              slot="header-actions-end"
+              >Filter by product to find sites.</calcite-tooltip
+            >
 
-            <calcite-block open collapsible heading="Filter by product" style="--calcite-block-padding: 0">
+            <calcite-block
+              open
+              collapsible
+              heading="Filter by product"
+              style="--calcite-block-padding: 0"
+            >
               <div class="filter-container">
                 <calcite-chip-group
                   placeholder="Select a product"
@@ -47,11 +76,21 @@
                   <calcite-tooltip reference-element="vegetables_chip"
                     >vegetables</calcite-tooltip
                   >
-                  <calcite-chip scale="l" kind="neutral" value="fruit" id="fruit_chip"
+                  <calcite-chip
+                    scale="l"
+                    kind="neutral"
+                    value="fruit"
+                    id="fruit_chip"
                     >🍉</calcite-chip
                   >
-                  <calcite-tooltip reference-element="fruit_chip">fruit</calcite-tooltip>
-                  <calcite-chip scale="l" kind="neutral" value="berries" id="berries_chip"
+                  <calcite-tooltip reference-element="fruit_chip"
+                    >fruit</calcite-tooltip
+                  >
+                  <calcite-chip
+                    scale="l"
+                    kind="neutral"
+                    value="berries"
+                    id="berries_chip"
                     >🫐</calcite-chip
                   >
                   <calcite-tooltip reference-element="berries_chip"
@@ -67,41 +106,91 @@
                   <calcite-tooltip reference-element="mushrooms_chip"
                     >mushrooms</calcite-tooltip
                   >
-                  <calcite-chip scale="l" kind="neutral" value="eggs" id="eggs_chip"
+                  <calcite-chip
+                    scale="l"
+                    kind="neutral"
+                    value="eggs"
+                    id="eggs_chip"
                     >🥚</calcite-chip
                   >
-                  <calcite-tooltip reference-element="eggs_chip">eggs</calcite-tooltip>
-                  <calcite-chip scale="l" kind="neutral" value="dairy" id="dairy_chip"
+                  <calcite-tooltip reference-element="eggs_chip"
+                    >eggs</calcite-tooltip
+                  >
+                  <calcite-chip
+                    scale="l"
+                    kind="neutral"
+                    value="dairy"
+                    id="dairy_chip"
                     >🥛</calcite-chip
                   >
-                  <calcite-tooltip reference-element="dairy_chip">dairy</calcite-tooltip>
-                  <calcite-chip scale="l" kind="neutral" value="meat" id="meat_chip"
+                  <calcite-tooltip reference-element="dairy_chip"
+                    >dairy</calcite-tooltip
+                  >
+                  <calcite-chip
+                    scale="l"
+                    kind="neutral"
+                    value="meat"
+                    id="meat_chip"
                     >🥩</calcite-chip
                   >
-                  <calcite-tooltip reference-element="meat_chip">meat</calcite-tooltip>
-                  <calcite-chip scale="l" kind="neutral" value="chicken" id="chicken_chip"
+                  <calcite-tooltip reference-element="meat_chip"
+                    >meat</calcite-tooltip
+                  >
+                  <calcite-chip
+                    scale="l"
+                    kind="neutral"
+                    value="chicken"
+                    id="chicken_chip"
                     >🐓</calcite-chip
                   >
                   <calcite-tooltip reference-element="chicken_chip"
                     >chicken</calcite-tooltip
                   >
-                  <calcite-chip scale="l" kind="neutral" value="pork" id="pork_chip"
+                  <calcite-chip
+                    scale="l"
+                    kind="neutral"
+                    value="pork"
+                    id="pork_chip"
                     >🐖</calcite-chip
                   >
-                  <calcite-tooltip reference-element="pork_chip">pork</calcite-tooltip>
-                  <calcite-chip scale="l" kind="neutral" value="fish" id="fish_chip"
+                  <calcite-tooltip reference-element="pork_chip"
+                    >pork</calcite-tooltip
+                  >
+                  <calcite-chip
+                    scale="l"
+                    kind="neutral"
+                    value="fish"
+                    id="fish_chip"
                     >🐟</calcite-chip
                   >
-                  <calcite-tooltip reference-element="fish_chip">fish</calcite-tooltip>
-                  <calcite-chip scale="l" kind="neutral" value="honey" id="honey_chip"
+                  <calcite-tooltip reference-element="fish_chip"
+                    >fish</calcite-tooltip
+                  >
+                  <calcite-chip
+                    scale="l"
+                    kind="neutral"
+                    value="honey"
+                    id="honey_chip"
                     >🐝</calcite-chip
                   >
-                  <calcite-tooltip reference-element="honey_chip">honey</calcite-tooltip>
-                  <calcite-chip scale="l" kind="neutral" value="herbs" id="herbs_chip"
+                  <calcite-tooltip reference-element="honey_chip"
+                    >honey</calcite-tooltip
+                  >
+                  <calcite-chip
+                    scale="l"
+                    kind="neutral"
+                    value="herbs"
+                    id="herbs_chip"
                     >🪴</calcite-chip
                   >
-                  <calcite-tooltip reference-element="herbs_chip">herbs</calcite-tooltip>
-                  <calcite-chip scale="l" kind="neutral" value="flowers" id="flowers_chip"
+                  <calcite-tooltip reference-element="herbs_chip"
+                    >herbs</calcite-tooltip
+                  >
+                  <calcite-chip
+                    scale="l"
+                    kind="neutral"
+                    value="flowers"
+                    id="flowers_chip"
                     >🌻</calcite-chip
                   >
                   <calcite-tooltip reference-element="flowers_chip"
@@ -120,7 +209,6 @@
                 </calcite-chip-group>
               </div>
             </calcite-block>
-
           </calcite-panel>
         </div>
       </calcite-panel>

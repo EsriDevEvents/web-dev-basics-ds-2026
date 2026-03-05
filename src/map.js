@@ -59,7 +59,6 @@ function customizePopupContent(feature) {
 </article>
 `;
   // return `<p><b>Pickup address:</b> {Location}</p><ul class="popup-chips">${chips}</ul><a href={Website}>View website</a>`;
-
 }
 // Configure popup template content
 const csaPopup = {
