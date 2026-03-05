@@ -8,39 +8,23 @@
   </head>
 
   <body>
-    <calcite-shell>
-      <calcite-navigation navigation-action slot="header" id="nav">
-        <calcite-navigation-logo href="#" icon="partner" alt="Application logo" slot="logo" heading="Portland CSA Pickup Sites"
-          description="Esri Developer & Technology Summit 2026"></calcite-navigation-logo>
-        <calcite-action-pad layout="horizontal" expand-disabled slot="content-end">
-          <calcite-action id="toggle-mode" text="Toggle mode" icon="brightness"></calcite-action>
-          <calcite-action id="toggle-modal" text="About this application" icon="information"></calcite-action>
-        </calcite-action-pad>
+  <calcite-shell content-behind>
+    <calcite-navigation navigation-action slot="header" id="nav">
+      <calcite-navigation-logo href="#" icon="partner" alt="Application logo" slot="logo" heading="Portland CSA Pickup Sites"
+        description="Esri Developer & Technology Summit 2026">
+      </calcite-navigation-logo>
+      <calcite-menu slot="content-end">
+        <calcite-menu-item active icon-start="map" text="Map" href="/"></calcite-menu-item>
+        <calcite-menu-item icon-start="list" text="Site list" href="/list-view"></calcite-menu-item>
+      </calcite-menu>
+    </calcite-navigation>
+    <calcite-shell-panel slot="panel-start" display-mode="float">
+      <arcgis-feature></arcgis-feature>
+    </calcite-shell-panel>
+    <calcite-shell-panel slot="panel-end" display-mode="float">
+      <calcite-panel heading="Find a pickup site">
 
-        <calcite-tooltip placement="bottom" reference-element="toggle-mode" slot="content-end">Toggle
-          mode</calcite-tooltip>
-        <calcite-tooltip placement="bottom" reference-element="toggle-modal" close-on-click slot="content-end">About this
-          application</calcite-tooltip>
-      </calcite-navigation>
-
-      <calcite-panel>
-        <div class="grid-container">
-          <calcite-panel class="panel-map" heading="Portland metro area">
-            <arcgis-map basemap="topo-vector" center="-122.676483, 45.523" zoom="12" popup-disabled>
-              <arcgis-zoom position="top-right"></arcgis-zoom>
-              <arcgis-feature position="bottom-left"></arcgis-feature>
-            </arcgis-map>
-          </calcite-panel>
-          <calcite-panel class="panel-results" heading="Results">
-            <div class="card-container"></div>
-          </calcite-panel>
-
-          <calcite-panel class="panel-start" heading="Find a site">
-            <calcite-action id="toggle-instructions" text="Instructions" icon="information"
-              slot="header-actions-end"></calcite-action>
-            <calcite-tooltip placement="bottom" reference-element="toggle-instructions" slot="header-actions-end">Filter by product to find sites.</calcite-tooltip>
-
-            <calcite-block open collapsible heading="Filter by product" style="--calcite-block-padding: 0">
+        <calcite-block open collapsible heading="Filter by product" style="--calcite-block-padding: 0">
               <div class="filter-container">
                 <calcite-chip-group
                   placeholder="Select a product"
@@ -130,11 +114,47 @@
                 </calcite-chip-group>
               </div>
             </calcite-block>
-
-          </calcite-panel>
-        </div>
       </calcite-panel>
+    </calcite-shell-panel>
+    <arcgis-map basemap="topo-vector" center="-122.676483, 45.523" zoom="12"></arcgis-map>
     </calcite-shell>
-    <script type="module" src="./src/main.js"></script>
+    <calcite-sheet id="sheet" display-mode="float" width-scale="m">
+      <calcite-panel heading="City of Portland" description="Helpful resources" closeable id="sheet-panel">
+        <calcite-menu
+          layout="vertical"
+          label="2026 Esri Developer & Technology Summit Menu"
+        >
+          <calcite-menu-item
+            text="2026 Esri Developer & Technology Summit Overview"
+            icon-end="launch"
+            href="https://www.esri.com/en-us/about/events/devsummit/overview"
+            target="_blank"
+          ></calcite-menu-item>
+          <calcite-menu-item
+            text="Esri Developer Events GitHub"
+            icon-end="launch"
+            href="https://github.com/EsriDevEvents"
+            target="_blank"
+          ></calcite-menu-item>
+          <calcite-menu-item
+            text="Esri.com"
+            icon-end="launch"
+            href="https://esri.com"
+            target="_blank"
+          ></calcite-menu-item>
+        </calcite-menu>
+        <calcite-notice open slot="footer" width="full" scale="s">
+          <span slot="title">Note</span>
+          <span slot="message"
+            >This is a demonstration application showcasing platform
+            functionality. While Esri strives to ensure the sample is accurate,
+            it may not reflect implementation behavior in certain
+            environments.</span
+          >
+        </calcite-notice>
+      </calcite-panel>
+    </calcite-sheet>
+    <script type="module" src="./src/panels.js"></script>
+    <script type="module" src="./src/map.js"></script>
   </body>
 </html>
