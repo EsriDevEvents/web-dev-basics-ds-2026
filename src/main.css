@@ -51,13 +51,10 @@ calcite-action-pad {
   max-height: calc(100% - 64px);
   display: grid;
   grid-auto-columns: 1fr;
-  grid-template-columns: minmax(18rem, 0.5fr) 1fr 1fr;
-  grid-template-rows: 0.4fr 1fr 1fr;
-  gap: 2rem 2rem;
-  grid-template-areas:
-    "panel-start panel-map panel-map"
-    "panel-start panel-map panel-map"
-    "panel-start panel-results panel-results";
+  grid-template-columns: minmax(15rem, 0.25fr) 1fr;
+  grid-template-rows: 1fr;
+  gap: 2rem;
+  grid-template-areas: "panel-start panel-results";
 }
 .panel-map {
   grid-area: panel-map;
