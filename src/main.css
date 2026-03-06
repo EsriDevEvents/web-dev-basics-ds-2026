@@ -51,16 +51,12 @@ calcite-action-pad {
   max-height: calc(100% - 64px);
   display: grid;
   grid-auto-columns: 1fr;
-  grid-template-columns: minmax(18rem, 0.5fr) 1fr 1fr;
-  grid-template-rows: 0.4fr 1fr 1fr;
+  grid-template-columns: minmax(18rem, 0.5fr) 1fr;
+  grid-template-rows: 0.4fr 1fr;
   gap: 2rem 2rem;
   grid-template-areas:
-    "panel-start panel-map panel-map"
-    "panel-start panel-map panel-map"
+    "panel-start panel-results panel-results"
     "panel-start panel-results panel-results";
-}
-.panel-map {
-  grid-area: panel-map;
 }
 
 .panel-results {
@@ -78,7 +74,7 @@ calcite-action-pad {
 @media screen and (max-width: 800px) {
   .grid-container {
     grid-template-columns: 1fr;
-    grid-template-areas: "panel-start" "panel-map" "panel-results";
+    grid-template-areas: "panel-start" "panel-results";
   }
   .panel-start {
     max-height: 40vh;

@@ -33,9 +33,6 @@
           ></calcite-menu-item>
         </calcite-menu>
       </calcite-navigation>
-      <calcite-shell-panel slot="panel-start" display-mode="float">
-        <arcgis-feature></arcgis-feature>
-      </calcite-shell-panel>
       <calcite-shell-panel slot="panel-end" display-mode="float">
         <calcite-panel heading="Find a pickup site">
           <calcite-block
@@ -195,11 +192,10 @@
           </calcite-block>
         </calcite-panel>
       </calcite-shell-panel>
-      <arcgis-map
-        basemap="topo-vector"
-        center="-122.676483, 45.523"
-        zoom="12"
-      ></arcgis-map>
+      <arcgis-map basemap="topo-vector" center="-122.676483, 45.523" zoom="12">
+        <arcgis-zoom slot="bottom-left"></arcgis-zoom>
+        <arcgis-feature slot="top-left"></arcgis-feature>
+      </arcgis-map>
     </calcite-shell>
     <calcite-sheet id="sheet" display-mode="float" width-scale="m">
       <calcite-panel

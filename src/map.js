@@ -20,12 +20,7 @@ import * as farmBuildingCIMSymbol from "./farm-building-cim-symbol.json";
 /**
  * Shared functions from list-view
  */
-import {
-  normalizeFeatureData,
-  displayCard,
-  categorizeProducts,
-  getChips,
-} from "./list-view/list-view";
+import { categorizeProducts, getChips } from "./list.js";
 
 // Set up renderer with custom CIMSymbol
 const csaRenderer = {
@@ -44,25 +39,12 @@ function customizePopupContent(feature) {
   const products = categorizeProducts(
     feature.graphic.attributes["Main_Products"],
   );
-
-  return `<article class="farm">
-  <header>
-    <h6>{Farm_Name}</h6>
-    <p>{Location}</p>
-  </header>
-  <ul class="products">${getChips(products)}</ul>
-  <p class="description">{FarmDescript}</p>
-  <footer>
-    <a href={Website} target="_blank" label="Visit {Farm_Name} website"><calcite-icon icon="web" scale="m" /></a>
-    <a href="mailto:{email}" label="Contact {Farm_Name"><calcite-icon icon="envelope" scale="m" /></a>
-  </footer>
-</article>
-`;
-  // return `<p><b>Pickup address:</b> {Location}</p><ul class="popup-chips">${chips}</ul><a href={Website}>View website</a>`;
+  return `<p><b>Pickup address:</b> {Location}</p><ul class="popup-chips" style="list-style-type:none">${getChips(products)}</ul>`;
 }
 // Configure popup template content
 const csaPopup = {
-  // title: "{Farm_Name}",
+  hideSpinner: true,
+  title: "{Farm_Name}",
   content: customizePopupContent,
 };
 
@@ -75,17 +57,17 @@ const csaPickupsLayer = new FeatureLayer({
 
 const mapElement = document.querySelector("arcgis-map");
 const feature = document.querySelector("arcgis-feature");
-const container = document.querySelector(".card-container");
 
 const defaultGraphic = {
   popupTemplate: {
+    hideSpinner: true,
     content: "Hover over a pickup site to show details.",
   },
 };
 
 // Wait until map component is ready before we begin working with it
 mapElement.addEventListener("arcgisViewReadyChange", async (event) => {
-  // Set our API key in esri config to access basemaps service
+  // Set API key in esri config to access basemaps service
   esriConfig.apiKey = import.meta.env.VITE_ARCGIS_API_KEY;
   mapElement.basemap = "arcgis/community";
 
@@ -97,56 +79,9 @@ mapElement.addEventListener("arcgisViewReadyChange", async (event) => {
     },
   ];
 
-  // Add our layer to the map with all data fields
+  // Add layer to the map with all data fields
   mapElement.map.add(csaPickupsLayer);
   csaPickupsLayer.outFields = ["*"];
-
-  // Query, process, and display our layer data with a promise chain - will it work?
-  // const features = csaPickupsLayer.queryFeatures({
-  //   where: "Status = 'Active'",
-  //   returnGeometry: false,
-  //     outFields: [
-  //       "OBJECTID",
-  //       "Farm_Name",
-  //       "FarmDescript",
-  //       "Location",
-  //       "Main_Products",
-  //       "Website",
-  //       "email",
-  //     ]
-  // })
-  // .then((data) => {
-  //   return normalizeFeatureData(data);
-  // })
-  // .then((data) => {
-  //   console.log("Data inside promise chain", data);
-  //   container.replaceChildren("");
-  //   data.forEach((feature) => {
-  //     displayCard(feature);
-  //   });
-  //   return data;
-  // });
-
-  // Query, process, and display our layer data with async/await
-  const featureSet = await csaPickupsLayer.queryFeatures({
-    where: "Status = 'Active'",
-    returnGeometry: false,
-    outFields: [
-      "OBJECTID",
-      "Farm_Name",
-      "FarmDescript",
-      "Location",
-      "Main_Products",
-      "Website",
-      "email",
-    ],
-  });
-
-  const features = normalizeFeatureData(featureSet);
-
-  // features.forEach((feature) => {
-  //   displayCard(feature);
-  // });
 
   // show the default graphic after the map loads (before we set up the hit test)
   feature.graphic = defaultGraphic;
@@ -190,34 +125,21 @@ mapElement.addEventListener("arcgisViewReadyChange", async (event) => {
   });
 
   document.addEventListener("calciteChipGroupSelect", (event) => {
-    container.replaceChildren("");
-
-    // Set filter values from the selected chips
+    // Get filter values from the selected chips' values
     const productFilter = event.target.selectedItems.map(
       (selected) => selected.value,
     );
 
+    // Configure feature filter: https://developers.arcgis.com/javascript/latest/references/core/layers/support/FeatureFilter/
     const featureFilter = {
       where: "Main_Products LIKE '%" + productFilter.join(", ") + "%'",
     };
 
+    // Set feature effect - applies client-side CSS filter styling to features that meet and do not meet the filter condition. See https://developers.arcgis.com/javascript/latest/references/core/layers/support/FeatureEffect/#Effect
     csaPickupsLayerView.featureEffect = {
       filter: featureFilter,
       includedEffect: "bloom(10%)",
       excludedEffect: "sepia(100%) opacity(30%)",
     };
-
-    // Logging out feature data before we filter out cards with no matching products
-    console.log("Data inside our event handler", features);
-
-    // features.forEach((feature) => {
-    //   const isMatch =
-    //     feature.products.filter((product) =>
-    //       productFilter.includes(product.replace(" ", "_")),
-    //     ).length === productFilter.length;
-    //   if (isMatch) {
-    //     displayCard(feature);
-    //   }
-    // });
   });
 });
