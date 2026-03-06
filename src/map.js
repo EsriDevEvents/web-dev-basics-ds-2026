@@ -1,4 +1,11 @@
 /**
+ * This example uses the Distribution build of Calcite Components.
+ * Refer to the documentation if switching to the Custom Elements build:
+ * https://developers.arcgis.com/calcite-design-system/get-started/#choose-a-build
+ **/
+import { defineCustomElements } from "@esri/calcite-components/dist/loader";
+
+/**
  * ES Modules from the JS Maps SDK
  */
 import esriConfig from "@arcgis/core/config";
@@ -22,6 +29,18 @@ import * as farmBuildingCIMSymbol from "./farm-building-cim-symbol.json";
  */
 import { categorizeProducts, getChips } from "./list.js";
 
+// Load calcite components
+defineCustomElements(window, {
+  resourcesUrl: "https://js.arcgis.com/calcite-components/5.0/assets",
+});
+
+// Set API key in esri config to authenticate with basemaps service
+esriConfig.apiKey = import.meta.env.VITE_ARCGIS_API_KEY;
+
+// References to arcgis components in index.html file
+const mapElement = document.querySelector("arcgis-map");
+const feature = document.querySelector("arcgis-feature");
+
 // Set up renderer with custom CIMSymbol
 const csaRenderer = {
   type: "simple",
@@ -35,7 +54,6 @@ const csaRenderer = {
 };
 
 function customizePopupContent(feature) {
-  console.log(feature.graphic.attributes);
   const products = categorizeProducts(
     feature.graphic.attributes["Main_Products"],
   );
@@ -55,9 +73,6 @@ const csaPickupsLayer = new FeatureLayer({
   popupTemplate: csaPopup,
 });
 
-const mapElement = document.querySelector("arcgis-map");
-const feature = document.querySelector("arcgis-feature");
-
 const defaultGraphic = {
   popupTemplate: {
     hideSpinner: true,
@@ -67,8 +82,6 @@ const defaultGraphic = {
 
 // Wait until map component is ready before we begin working with it
 mapElement.addEventListener("arcgisViewReadyChange", async (event) => {
-  // Set API key in esri config to access basemaps service
-  esriConfig.apiKey = import.meta.env.VITE_ARCGIS_API_KEY;
   mapElement.basemap = "arcgis/community";
 
   mapElement.highlights = [

@@ -21,7 +21,6 @@ navigationEl.addEventListener("calciteNavigationActionSelect", () =>
 panelEl.addEventListener("calcitePanelClose", () => handlePanelClose());
 
 function handleSheetOpen() {
-  console.log("yo");
   sheetEl.open = true;
   panelEl.closed = false;
 }
