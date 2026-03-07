@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
   //     return normalizeFeatureData(data);
   //   })
   //   .then((data) => {
-  //     console.log("Data inside promise chain", data);
+  //     console.log("Data inside queryFeatures promise chain", data);
   //     container.replaceChildren("");
   //     data.forEach((feature) => {
   //       displayCard(feature);
@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", async (event) => {
   //   });
 
   // Query, process, and display our layer data with async/await
+  // ArcGIS REST JS: https://developers.arcgis.com/arcgis-rest-js/api-reference/arcgis-rest-feature-service/queryFeatures/
+  // JS Maps SDK: https://developers.arcgis.com/javascript/latest/references/core/layers/FeatureLayer/#queryFeatures
   const featureSet = await queryFeatures({
     url: featureServiceUrl,
     where: "Status = 'Active'",
@@ -52,11 +54,6 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 
   document.addEventListener("calciteChipGroupSelect", (event) => {
     container.replaceChildren("");
-
-    /** Logging out data inside event listener */
-    console.log(`${event.type} target element`, event.target);
-
-    console.log(`${event.type} selected elements`, event.target.selectedItems);
 
     console.log(`Data inside ${event.type} event listener`, features);
 

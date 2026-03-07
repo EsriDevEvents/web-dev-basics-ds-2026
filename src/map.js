@@ -138,6 +138,11 @@ mapElement.addEventListener("arcgisViewReadyChange", async (event) => {
   });
 
   document.addEventListener("calciteChipGroupSelect", (event) => {
+    /** Logging out data inside event listener */
+    console.log(`${event.type} target element`, event.target);
+
+    console.log(`${event.type} selected elements`, event.target.selectedItems);
+    
     // Get filter values from the selected chips' values
     const productFilter = event.target.selectedItems.map(
       (selected) => selected.value,
@@ -154,5 +159,5 @@ mapElement.addEventListener("arcgisViewReadyChange", async (event) => {
       includedEffect: "bloom(10%)",
       excludedEffect: "sepia(100%) opacity(30%)",
     };
-  });
+  };);
 });
