@@ -142,7 +142,7 @@ mapElement.addEventListener("arcgisViewReadyChange", async (event) => {
     console.log(`${event.type} target element`, event.target);
 
     console.log(`${event.type} selected elements`, event.target.selectedItems);
-    
+
     // Get filter values from the selected chips' values
     const productFilter = event.target.selectedItems.map(
       (selected) => selected.value,
@@ -159,5 +159,5 @@ mapElement.addEventListener("arcgisViewReadyChange", async (event) => {
       includedEffect: "bloom(10%)",
       excludedEffect: "sepia(100%) opacity(30%)",
     };
-  };);
+  });
 });
