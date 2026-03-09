@@ -76,6 +76,9 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 });
 
 function displayCard(site) {
+  if (!container) {
+    return;
+  }
   const { farm, address, description, website, email, products } = site;
   const card = `<article class="farm">
   <header>
