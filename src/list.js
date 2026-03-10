@@ -53,6 +53,9 @@ document.addEventListener("DOMContentLoaded", async (event) => {
   });
 
   document.addEventListener("calciteChipGroupSelect", (event) => {
+    if (!container) {
+      return;
+    }
     container.replaceChildren("");
 
     console.log(`Data inside ${event.type} event listener`, features);

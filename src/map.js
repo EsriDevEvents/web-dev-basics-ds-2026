@@ -27,7 +27,7 @@ import * as farmBuildingCIMSymbol from "./farm-building-cim-symbol.json";
 /**
  * Shared functions from list-view
  */
-import { categorizeProducts, getChips } from "./list.js";
+import { categorizeProducts } from "./list.js";
 
 // Load calcite components
 defineCustomElements(window, {
@@ -57,12 +57,12 @@ function customizePopupContent(feature) {
   const products = categorizeProducts(
     feature.graphic.attributes["Main_Products"],
   );
-  return `<p><b>Pickup address:</b> {Location}</p><ul class="popup-chips" style="list-style-type:none">${getChips(products)}</ul>`;
+  return `<h4>{Farm_Name}</h4><p><b>Pickup address:</b> {Location}</p><p><b>Products:</b> ${products.join(", ")}</p>`;
 }
 // Configure popup template content
 const csaPopup = {
   hideSpinner: true,
-  title: "{Farm_Name}",
+  // title: "{Farm_Name}",
   content: customizePopupContent,
 };
 
